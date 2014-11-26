@@ -1,4 +1,5 @@
 LambdaLex
 =========
 
-Traductor a Haskell de Cálculo Lambda
+Lambda Calculus-Haskell translator.  
+`compile.sh` performs beta reduction on the input.
