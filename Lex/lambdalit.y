@@ -49,7 +49,7 @@ int main(int argc, char* argv[]) {
 root: expression
 {
     using namespace std;
-    const string IMPORT = "import src.Lambdalit";
+    const string IMPORT = "import Lex.Lambdalit";
     const string YACEXP = "yaccexp :: Expression";
     const string MAINEX = "main = putStrLn $ show yaccexp";
 

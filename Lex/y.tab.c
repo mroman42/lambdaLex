@@ -1240,7 +1240,7 @@ yyreduce:
 #line 50 "lambdalit.y" /* yacc.c:1646  */
     {
     using namespace std;
-    const string IMPORT = "import src.Lambdalit";
+    const string IMPORT = "import Lex.Lambdalit";
     const string YACEXP = "yaccexp :: Expression";
     const string MAINEX = "main = putStrLn $ show yaccexp";
 
