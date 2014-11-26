@@ -6,5 +6,10 @@ three= (\f.(\x.f (f (f x))))
 sucr = (\n.(\f.(\x.f ((n f) x))))
 plus = (\m.(\n.(\f.(\x.(m f) ((n f) x)))))
 mult = (\m.(\n.(\f.m (n f))))
+true = (\x.(\y.x))
+false= (\x.(\y.y))
+andr = (\p.(\q.(p q) p))
+orr  = (\p.(\q.(p p) q))
+notr = (\p.(\a.(\b.(p b) a)))
 Comp.
-(mult two) three
+(orr false) (notr true)
