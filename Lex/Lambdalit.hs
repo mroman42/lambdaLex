@@ -1,4 +1,4 @@
-module Lambdalit where
+module Lex.Lambdalit where
 
 import Prelude hiding (putStr)
 import Data.ByteString.Char8 (putStr)

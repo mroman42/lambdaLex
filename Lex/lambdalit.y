@@ -21,9 +21,25 @@ void yyerror(const char* str) {
     fprintf(stderr,"Error: %s\n",str);
 }
 
-int main() {
-    yyparse();
+int main(int argc, char* argv[]) {
+    // File handler
+    if (argc == 2) {
+	yyin = fopen(argv[1],"rt");
+	if (yyin == NULL) {
+	    printf("File %s can not be opened.\n",argv[1]);
+	    exit(-1);
+	}
+    }
+    else yyin = stdin;
+
+    do {
+	yyparse();
+    } while (!feof(yyin));
+
+    return 0;
 }
+
+
 %}
 
 %token OPAR CPAR LAMBDA VAR DOT
@@ -33,7 +49,7 @@ int main() {
 root: expression
 {
     using namespace std;
-    const string IMPORT = "import Lambdalit";
+    const string IMPORT = "import src.Lambdalit";
     const string YACEXP = "yaccexp :: Expression";
     const string MAINEX = "main = putStrLn $ show yaccexp";
 

@@ -86,11 +86,27 @@ void yyerror(const char* str) {
     fprintf(stderr,"Error: %s\n",str);
 }
 
-int main() {
-    yyparse();
+int main(int argc, char* argv[]) {
+    // File handler
+    if (argc == 2) {
+	yyin = fopen(argv[1],"rt");
+	if (yyin == NULL) {
+	    printf("File %s can not be opened.\n",argv[1]);
+	    exit(-1);
+	}
+    }
+    else yyin = stdin;
+
+    do {
+	yyparse();
+    } while (!feof(yyin));
+
+    return 0;
 }
 
-#line 94 "y.tab.c" /* yacc.c:339  */
+
+
+#line 110 "y.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -152,7 +168,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 156 "y.tab.c" /* yacc.c:358  */
+#line 172 "y.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -450,7 +466,7 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    33,    33,    49,    50,    51,    52,    56,    62,    68
+       0,    49,    49,    65,    66,    67,    68,    72,    78,    84
 };
 #endif
 
@@ -1221,10 +1237,10 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 34 "lambdalit.y" /* yacc.c:1646  */
+#line 50 "lambdalit.y" /* yacc.c:1646  */
     {
     using namespace std;
-    const string IMPORT = "import Lambdalit";
+    const string IMPORT = "import src.Lambdalit";
     const string YACEXP = "yaccexp :: Expression";
     const string MAINEX = "main = putStrLn $ show yaccexp";
 
@@ -1234,59 +1250,59 @@ yyreduce:
     cout << MAINEX << endl;
     exit(0);
 }
-#line 1238 "y.tab.c" /* yacc.c:1646  */
+#line 1254 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 3:
-#line 49 "lambdalit.y" /* yacc.c:1646  */
+#line 65 "lambdalit.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[0]);}
-#line 1244 "y.tab.c" /* yacc.c:1646  */
+#line 1260 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 4:
-#line 50 "lambdalit.y" /* yacc.c:1646  */
+#line 66 "lambdalit.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[0]);}
-#line 1250 "y.tab.c" /* yacc.c:1646  */
+#line 1266 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
-#line 51 "lambdalit.y" /* yacc.c:1646  */
+#line 67 "lambdalit.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[0]);}
-#line 1256 "y.tab.c" /* yacc.c:1646  */
+#line 1272 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 52 "lambdalit.y" /* yacc.c:1646  */
+#line 68 "lambdalit.y" /* yacc.c:1646  */
     {(yyval) = (yyvsp[-1]);}
-#line 1262 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 7:
-#line 57 "lambdalit.y" /* yacc.c:1646  */
-    { 
-    (yyval) = "Lambda (\'" + (yyvsp[-2]) + "\')(" + (yyvsp[0]) + ")";
-}
-#line 1270 "y.tab.c" /* yacc.c:1646  */
-    break;
-
-  case 8:
-#line 63 "lambdalit.y" /* yacc.c:1646  */
-    { 
-    (yyval) = "Pair (" + (yyvsp[-1]) + ")(" + (yyvsp[0]) + ")";
-}
 #line 1278 "y.tab.c" /* yacc.c:1646  */
     break;
 
-  case 9:
-#line 69 "lambdalit.y" /* yacc.c:1646  */
-    {
-    (yyval) = "Variable \'" + (yyvsp[0]) + "\'";
+  case 7:
+#line 73 "lambdalit.y" /* yacc.c:1646  */
+    { 
+    (yyval) = "Lambda (\'" + (yyvsp[-2]) + "\')(" + (yyvsp[0]) + ")";
 }
 #line 1286 "y.tab.c" /* yacc.c:1646  */
     break;
 
+  case 8:
+#line 79 "lambdalit.y" /* yacc.c:1646  */
+    { 
+    (yyval) = "Pair (" + (yyvsp[-1]) + ")(" + (yyvsp[0]) + ")";
+}
+#line 1294 "y.tab.c" /* yacc.c:1646  */
+    break;
 
-#line 1290 "y.tab.c" /* yacc.c:1646  */
+  case 9:
+#line 85 "lambdalit.y" /* yacc.c:1646  */
+    {
+    (yyval) = "Variable \'" + (yyvsp[0]) + "\'";
+}
+#line 1302 "y.tab.c" /* yacc.c:1646  */
+    break;
+
+
+#line 1306 "y.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
