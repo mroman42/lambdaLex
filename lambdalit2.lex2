@@ -1,0 +1,13 @@
+%{
+#include <stdio.h>
+#include "y.tab.h"
+%}
+
+%% /* Regular Expressions */
+\(                   ECHO;
+\)                   ECHO;
+\\                   return LAMBDA;
+[a-z]                return VAR;
+\.                   return DOT;
+.                    {};
+%%
