@@ -21,10 +21,23 @@ instance Show Expression where
 
 {- Variable Substitution -}
 subsVar :: Char -> Expression -> Expression -> Expression
-subsVar x y (Variable z) = if (z == x) then y else Variable x
-subsVar x y (Lambda a e) = (Lambda a (subsVar x y e))
+subsVar x y (Variable z) = if (z == x) then y else (Variable z)
+subsVar x y (Lambda z e) = if (z == x) then (Lambda z e) else (Lambda z (subsVar x y e))
 subsVar x y (Pair a b)   = (Pair (subsVar x y a) (subsVar x y b))
 
+
+{- Beta reduction -}
+betaRedU :: Expression -> Expression
+betaRedU (Pair (Lambda v e) d) = betaRed (subsVar v d e)
+betaRedU (Pair e f) = Pair (betaRed e) (betaRed f)
+betaRedU (Lambda x e) = Lambda x (betaRed e)
+betaRedU e = e   
+
+betaRed :: Expression -> Expression
+betaRed x
+  | x == y = x
+  | otherwise = betaRed y
+  where y = betaRedU x
 
 --------------------------------------------------------------------------------------
 {- De Brunijn expressions -}
@@ -44,3 +57,10 @@ instance Show ExpBrunijn where
 {- Beta reduction -}
 --betaRed :: ExpBrunijn -> ExpBrunijn
 --betaRed (Lambda a) b = 
+
+
+---------------------------------------------------------------------------------------
+procExp :: Expression -> IO() 
+procExp exp = do
+  putStrLn $ "Input: " ++ (show exp)
+  putStrLn $ "BRed:  " ++ (show $ betaRed exp)

@@ -1242,7 +1242,7 @@ yyreduce:
     using namespace std;
     const string IMPORT = "import Lex.Lambdalit";
     const string YACEXP = "yaccexp :: Expression";
-    const string MAINEX = "main = putStrLn $ show yaccexp";
+    const string MAINEX = "main = procExp yaccexp";
 
     cout << IMPORT << endl;
     cout << YACEXP << endl;
