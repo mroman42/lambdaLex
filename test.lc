@@ -1,1 +1,5 @@
-(\f.(\x.f x))
+Defs.
+ide = (\x.x)
+dae = (\x.y)
+Comp.
+ide dae

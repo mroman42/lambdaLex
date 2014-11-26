@@ -1,13 +1,31 @@
 %{
 #include <stdio.h>
-#include "y.tab.h"
 %}
 
 %% /* Regular Expressions */
-\(                   ECHO;
-\)                   ECHO;
-\\                   return LAMBDA;
-[a-z]                return VAR;
-\.                   return DOT;
+Defs\.$              printf("DEFS ");
+Comp\.$              printf("COMP ");
+\=                   printf("EQUALS ");
+\(                   printf("OPAR ");
+\)                   printf("CPAR ");
+\\                   printf("LAMBDA ");
+[a-z]                printf("VAR ");
+[a-z0-9]+            printf("NAME ");
+\.                   printf("DOT ");
+\n                   printf("NEWLINE ");
 .                    {};
 %%
+
+int main(int argc, char* argv[]) {
+    // File handler
+    if (argc == 2) {
+	yyin = fopen(argv[1],"rt");
+	if (yyin == NULL) {
+	    printf("File %s can not be opened.\n",argv[1]);
+	    exit(-1);
+	}
+    }
+    else yyin = stdin;
+    yylex();
+    return 0;
+}

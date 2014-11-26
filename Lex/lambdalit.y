@@ -13,7 +13,6 @@ extern "C"
         {
                 return 1;
         }
-
 }
 
 
@@ -42,11 +41,11 @@ int main(int argc, char* argv[]) {
 
 %}
 
-%token OPAR CPAR LAMBDA VAR DOT
+%token DEFS COMP EQUALS NAME OPAR CPAR LAMBDA VAR DOT NL
 
 %%
 // Yacc syntax
-root: expression
+root: DEFS NL definitions COMP NL expression
 {
     using namespace std;
     const string IMPORT = "import Lex.Lambdalit";
@@ -54,11 +53,22 @@ root: expression
     const string MAINEX = "main = procExp yaccexp";
 
     cout << IMPORT << endl;
+    cout << "-- Definitions " << endl;
+    cout << $3 << endl;
+    cout << "-- Computation" << endl;
     cout << YACEXP << endl;
-    cout << "yaccexp = " << $1 << endl;
+    cout << "yaccexp = " << $6 << endl;
     cout << MAINEX << endl;
     exit(0);
 }
+;
+
+definitions:  {$$ = "";}
+  | definitions definition {$$ = $1 + $2;}
+;
+
+
+definition: NAME EQUALS expression NL {$$ = std::string($1) + "=" + $3 + "\n";}
 ;
 
 expression
@@ -66,6 +76,7 @@ expression
        | pair {$$ = $1;} 
        | variable {$$ = $1;} 
        | OPAR expression CPAR {$$ = $2;}
+       | NAME {$$ = $1;}
 ;
 
 
