@@ -28,6 +28,9 @@ default: $(EXE)
 y.tab.c: lambdalit.y
 	$(YACC) lambdalit.y
 
+Lambdalit: Lambdalit.hs
+	ghc Lambdalit.hs 
+
 clean:
 	$(RM) -fv $(EXE) core.* *~ *.o
 
