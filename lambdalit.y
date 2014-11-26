@@ -32,7 +32,7 @@ int main() {
 // Yacc syntax
 root: expression
 {
-    std::cout << $1 << "Impreso";
+    std::cout << $1 << std::endl;
     exit(0);
 }
 ;
@@ -45,21 +45,21 @@ expression
 ;
 
 
-lambda: LAMBDA variable DOT expression
+lambda: LAMBDA VAR DOT expression
 { 
-    $$ = "(\\" +$2 + "." + $4 + ")";
+    $$ = "Lambda (\'" + $2 + "\')(" + $4 + ")";
 }
 ;
 
-pair: OPAR expression CPAR OPAR expression CPAR
+pair: expression expression
 { 
-    $$ = "Pair (" + $2 + ")(" + $5 + ")";
+    $$ = "Pair (" + $1 + ")(" + $2 + ")";
 }
 ;
 
 variable: VAR
 {
-    $$ = $1;
+    $$ = "Variable \'" + $1 + "\'";
 }
 ;
 

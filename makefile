@@ -16,14 +16,17 @@ LDFLAGS = -ll -I/usr/include
 
 default: $(EXE)
 
-./%: %.o help.o
+./%: %.o help.o help.cc
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
-%.o: %.c
+%.o: %.c lex.yy.c y.tab.c help.cc
 	$(CXX) -c -x c++ $(CXXFLAGS) $<
 
 %.c: %.lex
 	$(LEX) -o $@ $<
+
+y.tab.c: lambdalit.y
+	$(YACC) lambdalit.y
 
 clean:
 	$(RM) -fv $(EXE) core.* *~ *.o
