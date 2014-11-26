@@ -39,7 +39,7 @@ betaRed x
   | otherwise = betaRed y
   where y = betaRedU x
 
---------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 {- De Brunijn expressions -}
 data ExpBrunijn = Index   Int
                 | PairB   ExpBrunijn ExpBrunijn
@@ -52,14 +52,9 @@ showVars a (Index n)   = [(chr ((ord a) - n))]
 
 instance Show ExpBrunijn where
   show = showVars 'a'
+ 
 
-
-{- Beta reduction -}
---betaRed :: ExpBrunijn -> ExpBrunijn
---betaRed (Lambda a) b = 
-
-
----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 procExp :: Expression -> IO() 
 procExp exp = do
   putStrLn $ "Input: " ++ (show exp)
