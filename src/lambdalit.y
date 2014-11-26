@@ -32,7 +32,15 @@ int main() {
 // Yacc syntax
 root: expression
 {
-    std::cout << $1 << std::endl;
+    using namespace std;
+    const string IMPORT = "import Lambdalit";
+    const string YACEXP = "yaccexp :: Expression";
+    const string MAINEX = "main = putStrLn $ show yaccexp";
+
+    cout << IMPORT << endl;
+    cout << YACEXP << endl;
+    cout << "yaccexp = " << $1 << endl;
+    cout << MAINEX << endl;
     exit(0);
 }
 ;
