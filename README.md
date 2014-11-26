@@ -4,7 +4,7 @@ LambdaLex
 ## Installation
 The complete program can be built using: `make` in the `./Lex` folder.  
 
-The *Glasgow Haskell Compiler* (GHC), and the package `Data.ByteString.UTF8` are required. The package can be installed using Cabal:
+The *Glasgow Haskell Compiler* (GHC) and the package `Data.ByteString.UTF8` are required. The package can be installed using Cabal:
 ``` bash
 cabal install utf8-string
 ```  
