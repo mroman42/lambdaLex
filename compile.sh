@@ -16,4 +16,4 @@ ghc $HSOUT -o $CCOUT > /dev/null
 ./$CCOUT
 
 # Cleaning
-#rm $INPUT.{hi,o,hs,out}
+rm $INPUT.{hi,o,hs,out}

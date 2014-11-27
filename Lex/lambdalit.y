@@ -86,7 +86,7 @@ lambda: LAMBDA VAR DOT expression
 }
 ;
 
-pair: expression expression
+pair: expression expression %prec HIGH
 { 
     $$ = "Pair (" + $1 + ")(" + $2 + ")";
 }

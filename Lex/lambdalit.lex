@@ -10,8 +10,8 @@ Comp\.$              return COMP;
 \(                   return OPAR;
 \)                   return CPAR;
 \\                   return LAMBDA;
-[a-z]                yylval=yytext[0]; return VAR;
-[a-z0-9]+            yylval=yytext; return NAME;
+[a-z]                {yylval=yytext[0]; return VAR;}
+[a-z0-9]+            {yylval=yytext; return NAME;}
 \.                   return DOT;
 \n                   return NL;
 .                    {};
